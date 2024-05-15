@@ -5,7 +5,7 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/admin/books');
+    router.push('/auth/SignupPage');
   }, [router]);
 
   return <div>Redirecting...</div>;

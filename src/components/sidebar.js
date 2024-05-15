@@ -1,3 +1,4 @@
+// Sidebar.js
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { List, ListItem, ListItemIcon, ListItemText, Divider, Typography } from '@mui/material';
@@ -9,10 +10,10 @@ import {
   HistoryOutlined, History, 
   SettingsOutlined, Settings, 
   HelpOutline, Help, 
-  ExitToAppOutlined, ExitToApp ,
-  NorthIcon, NorthOutlined
+  ExitToAppOutlined, ExitToApp 
 } from '@mui/icons-material';
 import { styled } from '@mui/system';
+import ConfirmationDialog from './ConfirmationDialog';
 
 const SidebarContainer = styled('div')({
   height: '100vh',
@@ -30,6 +31,7 @@ const SidebarContainer = styled('div')({
 const Sidebar = () => {
   const router = useRouter();
   const [selectedPath, setSelectedPath] = useState(router.pathname);
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
 
   useEffect(() => {
     setSelectedPath(router.pathname);
@@ -42,6 +44,19 @@ const Sidebar = () => {
 
   const getIcon = (path, outlinedIcon, filledIcon) => {
     return selectedPath === path ? filledIcon : outlinedIcon;
+  };
+
+  const handleLogoutClick = () => {
+    setLogoutDialogOpen(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    setLogoutDialogOpen(false);
+    router.push('/auth/LoginPage');
+  };
+
+  const handleLogoutClose = () => {
+    setLogoutDialogOpen(false);
   };
 
   return (
@@ -64,9 +79,9 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary={<Typography variant="body2">Books</Typography>} />
         </ListItem>
-        <ListItem button selected={selectedPath === '/admin/students'} onClick={() => handleNavigation('/admin/students')}>
+        <ListItem button selected={selectedPath === '/admin/StudentsPage'} onClick={() => handleNavigation('/admin/StudentsPage')}>
           <ListItemIcon>
-            {getIcon('/admin/students', <PersonOutlined />, <Person />)}
+            {getIcon('/admin/StudentsPage', <PersonOutlined />, <Person />)}
           </ListItemIcon>
           <ListItemText primary={<Typography variant="body2">Students</Typography>} />
         </ListItem>
@@ -103,13 +118,18 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary={<Typography variant="body2">Help</Typography>} />
         </ListItem>
-        <ListItem button selected={selectedPath === '/logout'} onClick={() => handleNavigation('/logout')}>
+        <ListItem button selected={selectedPath === '/logout'} onClick={handleLogoutClick}>
           <ListItemIcon>
             {getIcon('/logout', <ExitToAppOutlined />, <ExitToApp />)}
           </ListItemIcon>
           <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
         </ListItem>
       </List>
+      <ConfirmationDialog
+        open={logoutDialogOpen}
+        onClose={handleLogoutClose}
+        onConfirm={handleLogoutConfirm}
+      />
     </SidebarContainer>
   );
 };

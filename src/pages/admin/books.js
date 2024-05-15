@@ -1,25 +1,6 @@
 import React, { useState } from 'react';
-import {
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Paper,
-  TextField,
-  Button,
-  IconButton,
-  Typography,
-  TablePagination,
-  Box,
-  Stack,
-  Divider,
-  InputAdornment,
-  Menu,
-  MenuItem,
-  Icon
-} from '@mui/material';
+import {TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, TextField, Button, IconButton,
+  Typography, TablePagination, Box, Stack, Divider, InputAdornment, Menu, MenuItem} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import SearchIcon from '@mui/icons-material/Search';
@@ -115,7 +96,7 @@ const BooksPage = () => {
           </Menu>
         </Stack>
         <Divider />
-        <Box sx={{ mt: 2, mb: 4, p: 2, maxWidth:"90vw", backgroundColor: '#e3f2fd', borderRadius: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box sx={{ mt: 2, mb: 2, p: 2, maxWidth:"90vw", backgroundColor: '#e3f2fd', borderRadius: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant="body1" color="textPrimary" sx={{ fontWeight: 'bold' }}>
               Delete book.
@@ -126,6 +107,19 @@ const BooksPage = () => {
           </Box>
           <Button variant="contained" color="primary">
             Delete Books
+          </Button>
+        </Box>
+        <Box sx={{mb: 4, p: 2, maxWidth:"90vw", backgroundColor: '#e3f2fd', borderRadius: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography variant="body1" color="textPrimary" sx={{ fontWeight: 'bold' }}>
+              Create book.
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Create a new book record in the database.
+            </Typography>
+          </Box>
+          <Button variant="contained" color="primary">
+            Create Books
           </Button>
         </Box>
         <TableContainer component={Paper} sx={{ borderRadius: 2, boxShadow: 3 }}>

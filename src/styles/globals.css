@@ -48,7 +48,7 @@ body {
 
 .Mui-selected {
   background-color: rgba(0, 0, 0, 0.08) !important;
-  border-radius: 8px !important;
+  border-radius: 16px !important;
 }
 
 .Mui-selected:hover {
