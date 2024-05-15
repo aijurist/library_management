@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -30,4 +32,25 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.material-icons {
+  border: 1px solid #ddd;
+  padding: 0.2em;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f7fafc;
+  margin: 0;
+  padding: 0;
+}
+
+.Mui-selected {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  border-radius: 8px !important;
+}
+
+.Mui-selected:hover {
+  background-color: rgba(0, 0, 0, 0.15) !important;
 }
