@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import {TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, TextField, Button, IconButton,
-  Typography, TablePagination, Box, Stack, Divider, InputAdornment, Menu, MenuItem} from '@mui/material';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, TextField, Button, IconButton, Typography, TablePagination, Box, Stack, Divider, InputAdornment, Menu, MenuItem } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import SearchIcon from '@mui/icons-material/Search';
@@ -19,6 +18,17 @@ const BooksPage = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [anchorEl, setAnchorEl] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: 'title', direction: 'asc' });
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSearch = (event) => {
+    setSearchInput(event.target.value);
+  };  
+
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+    book.author.toLowerCase().includes(searchInput.toLowerCase()) ||
+    book.isbn.toLowerCase().includes(searchInput.toLowerCase())
+  );  
 
   const handleSort = (key) => {
     let direction = 'asc';
@@ -29,7 +39,7 @@ const BooksPage = () => {
     setAnchorEl(null);
   };
 
-  const sortedBooks = [...books].sort((a, b) => {
+  const sortedBooks = [...filteredBooks].sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) {
       return sortConfig.direction === 'asc' ? -1 : 1;
     }
@@ -67,6 +77,8 @@ const BooksPage = () => {
           <TextField
             placeholder="Search books"
             variant="outlined"
+            value={searchInput}
+            onChange={handleSearch}
             fullWidth
             InputProps={{
               endAdornment: (
@@ -164,7 +176,7 @@ const BooksPage = () => {
         </TableContainer>
         <TablePagination
           component="div"
-          count={books.length}
+          count={filteredBooks.length}
           page={page}
           onPageChange={handleChangePage}
           rowsPerPage={rowsPerPage}

@@ -48,7 +48,6 @@ const Dashboard = () => {
     <Layout>
       <Grid container>
         <Grid item xs={2}>
-          <Sidebar />
         </Grid>
         <Grid item xs={10}>
           <DashboardContainer>

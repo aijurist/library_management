@@ -92,7 +92,7 @@ const LoginPage = () => {
         </Link>
 
         <div className="text-center mt-4">
-          Don't have an account?{' '}
+          Dont have an account?{' '}
           <Link href="/auth/SignupPage">
             <span className="text-blue-500 hover:underline">Sign Up</span>
           </Link>

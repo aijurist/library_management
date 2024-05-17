@@ -6,11 +6,11 @@ import {
   HomeOutlined, Home, 
   BookOutlined, Book, 
   PersonOutlined, Person, 
-  ListAltOutlined, ListAlt, 
+  AssignmentReturnedOutlined, AssignmentReturned, 
   HistoryOutlined, History, 
   SettingsOutlined, Settings, 
   HelpOutline, Help, 
-  ExitToAppOutlined, ExitToApp 
+  ExitToAppOutlined, ExitToApp
 } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import ConfirmationDialog from './ConfirmationDialog';
@@ -85,26 +85,20 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary={<Typography variant="body2">Students</Typography>} />
         </ListItem>
-        <ListItem button selected={selectedPath === '/admin/borrow'} onClick={() => handleNavigation('/admin/borrow')}>
+        <ListItem button selected={selectedPath === '/admin/BorrowPage'} onClick={() => handleNavigation('/admin/BorrowPage')}>
           <ListItemIcon>
-            {getIcon('/admin/borrow', <ListAltOutlined />, <ListAlt />)}
+            {getIcon('/admin/BorrowPage', <AssignmentReturnedOutlined />, <AssignmentReturned />)}
           </ListItemIcon>
           <ListItemText primary={<Typography variant="body2">Borrow</Typography>} />
         </ListItem>
-        <ListItem button selected={selectedPath === '/admin/return'} onClick={() => handleNavigation('/admin/return')}>
+        <ListItem button selected={selectedPath === '/admin/ReturnBook'} onClick={() => handleNavigation('/admin/ReturnBook')}>
           <ListItemIcon>
-            {getIcon('/admin/return', <HistoryOutlined />, <History />)}
+            {getIcon('/admin/ReturnBook', <HistoryOutlined />, <History />)}
           </ListItemIcon>
           <ListItemText primary={<Typography variant="body2">Return</Typography>} />
         </ListItem>
-        <ListItem button selected={selectedPath === '/admin/overdue'} onClick={() => handleNavigation('/admin/overdue')}>
-          <ListItemIcon>
-            {getIcon('/admin/overdue', <HistoryOutlined />, <History />)}
-          </ListItemIcon>
-          <ListItemText primary={<Typography variant="body2">Overdue</Typography>} />
-        </ListItem>
       </List>
-      <Divider />
+      <Divider style={{paddingTop: "50px"}}/>
       <List className="flex flex-col space-y-2 mt-auto">
         <ListItem button selected={selectedPath === '/settings'} onClick={() => handleNavigation('/settings')}>
           <ListItemIcon>

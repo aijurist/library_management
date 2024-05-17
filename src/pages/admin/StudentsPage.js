@@ -7,6 +7,7 @@ import { Search, Sort, GetApp } from '@mui/icons-material';
 
 import Sidebar from '../../components/Sidebar';
 import FunctionalOperation from '../../components/FunctionalOperation';
+import { filter } from 'lodash';
 
 const StudentsPage = () => {
   const [students, setStudents] = useState([
@@ -21,6 +22,18 @@ const StudentsPage = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'asc' });
   const [showFunctionalOperation, setShowFunctionalOperation] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSearch = (event) => {
+    setSearchInput(event.target.value);
+  };  
+
+  const filteredStudents = students.filter((student) =>
+    student.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+    student.email.toLowerCase().includes(searchInput.toLowerCase()) ||
+    student.department.toLowerCase().includes(searchInput.toLowerCase())
+  );
+  
 
   const handleSort = (key) => {
     let direction = 'asc';
@@ -31,7 +44,7 @@ const StudentsPage = () => {
     setAnchorEl(null);
   };
 
-  const sortedStudents = [...students].sort((a, b) => {
+  const sortedStudents = [...filteredStudents].sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) {
       return sortConfig.direction === 'asc' ? -1 : 1;
     }
@@ -98,6 +111,8 @@ const StudentsPage = () => {
           <TextField
             placeholder="Search students"
             variant="outlined"
+            value={searchInput}
+            onChange={handleSearch}
             fullWidth
             InputProps={{
               endAdornment: (
@@ -160,7 +175,7 @@ const StudentsPage = () => {
         </TableContainer>
         <TablePagination
           component="div"
-          count={students.length}
+          count={filteredStudents.length}
           page={page}
           onPageChange={handleChangePage}
           rowsPerPage={rowsPerPage}
